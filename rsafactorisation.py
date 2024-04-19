@@ -42,7 +42,7 @@ def extended_gcd(a, b):
         y = x1
         return gcd, x, y
 
-def rsa_key_generation(bit_length=16):
+def rsa_key_generation(bit_length=8):
     """Generates RSA public and private keys."""
     # Generate prime numbers p and q
     p = get_random_prime(bit_length)
@@ -79,17 +79,17 @@ print("Private key:", private_key)
 
 # Test encryption and decryption
 m = 11  # Message to be encrypted
-n, e = public_key
-n, d = private_key
+(n, e) = public_key
+(n, d) = private_key
 
 # Encrypt the message
-c = pow(m, e, n)
+C = pow(m, e, n)
 
 # Decrypt the message
-M = pow(c, d, n)
+M = pow(C, d, n)
 
-print("\nEncrypted message:", c)
-print("Decrypted message:", M)
+print("\nEncrypted message:", C)
+print("\nDecrypted message:", M)
 
 
 
