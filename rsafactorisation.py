@@ -3,7 +3,7 @@ import random
 import time 
 
 user= int(input("Enter 8 or 16 bits: "))
-
+users_input= int(input("Enter message to encrypt: "))
 def is_prime(num):
     """Checks if a number is prime using trial division."""
     if num <= 1:
@@ -43,11 +43,17 @@ def extended_gcd(a, b):
         y = x1
         return gcd, x, y
 
-def rsa_key_generation(bit_length=16):
+def rsa_key_generation(bit_length):
     """Generates RSA public and private keys."""
     # Generate prime numbers p and q
-    p = get_random_prime(bit_length)
-    q = get_random_prime(bit_length)
+    if user == 8:
+        p = get_random_prime(8)
+        q = get_random_prime(8)
+    elif user == 16: 
+        p = get_random_prime(16)
+        q = get_random_prime(16)
+    else: 
+        exit()
     
     # Compute n and euler's totient function (eul)
     n = p * q
@@ -71,6 +77,7 @@ def rsa_key_generation(bit_length=16):
     # Return public and private keys
     public_key = (n, e)
     private_key = (n, d)
+    print("p&q =" ,p, q)
     return public_key, private_key
 
 # Generate RSA keys
@@ -79,18 +86,19 @@ print("Public key:", public_key)
 print("Private key:", private_key)
 
 # Test encryption and decryption
-m = 11  # Message to be encrypted
+# m = 11  # Message to be encrypted
 (n, e) = public_key
 (n, d) = private_key
 
 # Encrypt the message
-C = pow(m, e, n)
+C = pow(users_input, e, n)
 
 # Decrypt the message
 M = pow(C, d, n)
 
 print("\nEncrypted message:", C)
 print("\nDecrypted message:", M)
+print("n = ", n)
 
 
 
