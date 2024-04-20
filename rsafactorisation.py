@@ -4,6 +4,8 @@ import time
 
 user= int(input("Enter 8 or 16 bits: "))
 users_input= int(input("Enter message to encrypt: "))
+start=time.time()
+
 def is_prime(num):
     """Checks if a number is prime using trial division."""
     if num <= 1:
@@ -95,10 +97,13 @@ C = pow(users_input, e, n)
 
 # Decrypt the message
 M = pow(C, d, n)
+end=time.time()
+time=(end-start)*1000
 
 print("\nEncrypted message:", C)
 print("\nDecrypted message:", M)
 print("n = ", n)
+print("time taken is: ", time)
 
 
 
