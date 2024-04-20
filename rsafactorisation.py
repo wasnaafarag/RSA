@@ -2,6 +2,7 @@ import math
 import random
 import time 
 
+user= int(input("Enter 8 or 16 bits: "))
 
 def is_prime(num):
     """Checks if a number is prime using trial division."""
@@ -42,7 +43,7 @@ def extended_gcd(a, b):
         y = x1
         return gcd, x, y
 
-def rsa_key_generation(bit_length=8):
+def rsa_key_generation(bit_length=16):
     """Generates RSA public and private keys."""
     # Generate prime numbers p and q
     p = get_random_prime(bit_length)
