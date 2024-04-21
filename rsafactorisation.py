@@ -2,28 +2,28 @@ import math
 import random
 import time 
 
-user= int(input("Enter 8 or 16 bits: "))
-users_input= int(input("Enter message to encrypt: "))
-start=time.time()
+user= int(input("Enter 8 or 16 bits: "))#O(c)
+users_input= int(input("Enter message to encrypt: "))#O(c)
+start=time.time()#O(c)
 
-def is_prime(num):
+def is_prime(num):#O(c)
     """Checks if a number is prime using trial division."""
-    if num <= 1:
+    if num <= 1: #O(C)
         return False
-    if num <= 3:
+    if num <= 3:#O(C)
         return True
-    if num % 2 == 0 or num % 3 == 0:
+    if num % 2 == 0 or num % 3 == 0:#O(C)
         return False
     i = 5
-    while i * i <= num:
-        if num % i == 0 or num % (i + 2) == 0:
+    while i * i <= num:#O(n)
+        if num % i == 0 or num % (i + 2) == 0:#O(C)
             return False
         i += 6
     return True
 
 def get_random_prime(user):
     """Generates a random prime number of a specified bit length."""
-    while True:
+    while True:#O(n)
         # Generate a random number within the desired bit length
         num = random.getrandbits(user)
         # Make sure the number is odd and has the desired bit length
@@ -31,15 +31,15 @@ def get_random_prime(user):
         num |= (1 << (user - 1))  # Ensure the number has the correct bit length
         
         # Check if the number is prime
-        if is_prime(num):
+        if is_prime(num):#O(c)
             return num
         
 
 def extended_gcd(a, b):
     """Extended Euclidean algorithm to find the gcd of a and b and coefficients x and y."""
-    if a == 0:
+    if a == 0:#O(C)
         return b, 0, 1
-    else:
+    else: #O(C)
         gcd, x1, y1 = extended_gcd(b % a, a)
         x = y1 - (b // a) * x1
         y = x1
@@ -48,13 +48,13 @@ def extended_gcd(a, b):
 def rsa_key_generation(bit_length):
     """Generates RSA public and private keys."""
     # Generate prime numbers p and q
-    if user == 8:
+    if user == 8:#O(C)
         p = get_random_prime(8)
         q = get_random_prime(8)
-    elif user == 16: 
+    elif user == 16: #O(C)
         p = get_random_prime(16)
         q = get_random_prime(16)
-    else: 
+    else: #O(C)
         exit()
     
     # Compute n and euler's totient function (eul)
@@ -67,13 +67,13 @@ def rsa_key_generation(bit_length):
     # Ensure e is coprime to eul
     gcd, x, y = extended_gcd(e, eul)
     
-    while gcd != 1:
+    while gcd != 1: #O(n)
         e = random.randint(2, eul - 1)
         gcd, x, y = extended_gcd(e, eul)
     
     # Calculate the private exponent d
     d = x % eul
-    if d < 0:
+    if d < 0:#O(C)
         d += eul
     
     # Return public and private keys
@@ -103,7 +103,7 @@ time=(end-start)*1000
 print("\nEncrypted message:", C)
 print("\nDecrypted message:", M)
 print("n = ", n)
-print("time taken is: ", time)
+print("time taken is: ", time) 
 
 
 

@@ -2,17 +2,17 @@ import random
 import math
 import time
 
-def is_prime(num):
+def is_prime(num):#o(c)
     """Checks if a number is prime using trial division."""
-    if num <= 1:
+    if num <= 1:#o(c)
         return False
-    if num <= 3:
+    if num <= 3:#o(c)
         return True
-    if num % 2 == 0 or num % 3 == 0:
+    if num % 2 == 0 or num % 3 == 0:#o(c)
         return False
     i = 5
-    while i * i <= num:
-        if num % i == 0 or num % (i + 2) == 0:
+    while i * i <= num:#o(logn)
+        if num % i == 0 or num % (i + 2) == 0:#o(c)
             return False
         i += 6
     return True
