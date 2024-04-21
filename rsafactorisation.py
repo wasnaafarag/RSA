@@ -21,14 +21,14 @@ def is_prime(num):
         i += 6
     return True
 
-def get_random_prime(bit_length):
+def get_random_prime(user):
     """Generates a random prime number of a specified bit length."""
     while True:
         # Generate a random number within the desired bit length
-        num = random.getrandbits(bit_length)
+        num = random.getrandbits(user)
         # Make sure the number is odd and has the desired bit length
         num |= 1  # Ensure the number is odd
-        num |= (1 << (bit_length - 1))  # Ensure the number has the correct bit length
+        num |= (1 << (user - 1))  # Ensure the number has the correct bit length
         
         # Check if the number is prime
         if is_prime(num):
